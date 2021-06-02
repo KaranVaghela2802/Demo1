@@ -1,22 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
+const App=()=> {
+  const [labelWidth, setLabelWidth] = React.useState(0);
+
+  React.useEffect(() => {
+    fetch(
+      "https://jsonplaceholder.typicode.com/todos",
+      {
+        method: "GET",
+        headers: new Headers({
+          "Content-Type": "application/x-www-form-urlencoded" // <-- Specifying the Content-Type
+        })
+      }
+    )
+      .then(response => response.json())
+      .then(responseText => {
+        console.log(responseText);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }, []);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Hiiiiiiiiii</h1>
       </header>
     </div>
   );
